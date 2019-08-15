@@ -20,17 +20,20 @@ The secret, the current counter and the optional label depends on the user accou
 
 use OTPHP\TOTP;
 
+//Get user secret from database and store into $secret variable. Exemplified by random string.
+$secret = 'ksjhfienin983ur439frif9'; //stored secret
+
 $digits = 6;
 $digest = 'sha1';
 $period = 30;
 
 $totp = TOTP::create(
-    $user->getOtpSecret(),
+    $secret,
     $period,
     $digest,
     $digits
 );
-$totp->setLabel($user->getEmail());
+$totp->setLabel('usernameOrEmail');
 
 $totp->verify($_POST['otp']);
 ```
