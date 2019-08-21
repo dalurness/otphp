@@ -13,6 +13,7 @@ You just have to:
 
 ```php
 <?php
+require_once("<Filepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
 use OTPHP\TOTP;
 
 $totp = TOTP::create('JBSWY3DPEHPK3PXP'); // New TOTP with custom secret
@@ -32,6 +33,7 @@ Hereafter two examples using the Google Chart API (this API is deprecated since 
 
 ```php
 <?php
+require_once("<Filepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
 use OTPHP\TOTP;
 
 $totp = TOTP::create(); // New TOTP
@@ -46,6 +48,7 @@ Please note that this URI MUST contain a placeholder for the OTP Provisioning UR
 
 ```php
 <?php
+require_once("<Filepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
 use OTPHP\TOTP;
 
 $totp = TOTP::create(); // New TOTP
@@ -72,6 +75,7 @@ Now run the following and compare the output
 
 ```php
 <?php
+require_once("<Filepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
 use OTPHP\TOTP;
 
 $totp = TOTP::create('JBSWY3DPEHPK3PXP'); // New TOTP with custom secret
@@ -90,6 +94,7 @@ Now run the following and compare the output
 
 ```php
 <?php
+require_once("<homeFilepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
 use OTPHP\TOTP;
 
 $totp = TOTP::create(
