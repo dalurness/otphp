@@ -55,6 +55,7 @@ To create an OTP object, just use the static `create` method. Your object will b
 
 ```php
 <?php
+require_once("<Filepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
 use OTPHP\TOTP;
 
 $otp = TOTP::create();
@@ -75,11 +76,35 @@ $grCodeUri = $totp->getQrCodeUri(
 );
 echo "<img src='{$grCodeUri}'>";
 ```
+Example using BaconQrCode
+```php
+require_once("<Filepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
+
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
+
+$totp = TOTP::create();
+$totp->setLabel('LabelGoesHere');
+
+$URI = $totp->getProvisioningUri();
+
+$renderer = new ImageRenderer(
+    new RendererStyle(400),
+    new SvgImageBackEnd()
+);
+$writer = new Writer($renderer);
+
+$qr_image = $writer->writeString($URI);
+echo "$qr_image";
+
+```
 
 Now that your applications are configured, you can verify the generated OTPs:
 
 ```php
-$otp->verify($input); // Returns true if the input is verified, otherwise false.
+$otp->verify($sixDigitCode); // Returns true if the input is verified, otherwise false.
 ```
 
 # Advanced Features
