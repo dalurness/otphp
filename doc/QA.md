@@ -17,15 +17,17 @@ The secret, the current counter and the optional label depends on the user accou
 
 ```php
 <?php
-
+require_once("<Filepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
 use OTPHP\TOTP;
 
 $digits = 6;
 $digest = 'sha1';
 $period = 30;
 
+$secret = $result; //$result representing secret received from database query for secret stored with this user
+
 $totp = TOTP::create(
-    $user->getOtpSecret(),
+    $secret,
     $period,
     $digest,
     $digits
@@ -54,11 +56,11 @@ Old provisioning Uris may be updated step by step (e.g. when the end-user is log
 
 ```php
 <php
-
+require_once("<Filepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
 use OTPHP\Factory;
-
+$URI = $result; // $result representing URI retrieved from the database query for URI stored with user
 $otp = Factory::loadFromProvisioningUri(
-    $user->getProvisioningUri()
+    $URI
 );
 
 $otp->verify($_POST['otp']);
@@ -74,6 +76,7 @@ If you try the following code lines, you may see 2 different OTPs.
 
 ```php
 <?php
+require_once("<Filepath>/vendor/autoload.php"); //include all files in the downloaded otphp package
 use OTPHP\TOTP;
 
 $totp = TOTP::create(null, 10); // TOTP with an 10 seconds period
